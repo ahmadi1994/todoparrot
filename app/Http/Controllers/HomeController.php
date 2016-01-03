@@ -26,6 +26,6 @@ class HomeController extends Controller
     {
         $info= array("aziz","ahmad","ahmadi");
         $name ="aziz ahmad ahmadi";
-        return view('home')->with("name",$name)->with("info",$info);
+        return view('home',compact("info",$info,"name",$name));
     }
 }
