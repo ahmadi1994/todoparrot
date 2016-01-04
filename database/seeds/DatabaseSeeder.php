@@ -11,6 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('todolist')->delete();
+        $this->call('TodoListTableSeeder');
+
         // $this->call(UserTableSeeder::class);
     }
 }

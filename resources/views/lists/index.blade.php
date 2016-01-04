@@ -7,9 +7,17 @@
                 <div class="panel-body">
                     Your Application's Landing Page.
                 </div>
-                @foreach($list as $li )
-                    {{$li->name}}
-                @endforeach
+                <div class="panel-body">
+                    @foreach($lists as $lis)
+                        year : {{$lis->year}} conut :{{$lis->count}}<br>
+                    @endforeach
+                    <?php $count=0; ?>
+                    @foreach($list as $key => $li )
+
+                            <a href="\list\{{$li->id}}"> <h1> {{$li->id}} {{$li->name}}</h1></a>
+                    @endforeach
+                    {!! $list->render() !!}
+                </div>
                 {!!Form::Open()  !!}
                 {!! Form::text("name") !!}
                 {!!Form::close()  !!}
@@ -18,4 +26,5 @@
             </div>
 
         </div>
+    </div>
 @endsection

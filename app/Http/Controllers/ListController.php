@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 
 class ListController extends Controller
 {
@@ -23,8 +25,14 @@ class ListController extends Controller
     public function index()
     {
         //
-        $list=TodoList::all();
-        return view('lists.index',compact("list",$list));
+//        $list=TodoList::orderBy('updated_at', 'DESC')->orderBy('name', 'ASC')->get();
+        $list=TodoList::orderBy('created_at', 'desc')->paginate(10);
+        //
+        $lists = TodoList::select(DB::raw('year(created_at) as year'),
+                 DB::raw('count(name) as `count`'))->groupBy('year')->orderBy("count","DESC")->get();
+//        $lists = TodoList::orderBy('created_at', 'desc')->paginate(10);
+
+        return view('lists.index',compact("list",$list,"lists",$lists));
 
     }
 
@@ -47,7 +55,10 @@ class ListController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $list=TodoList::create($request->toArray());
+        $list->save();
+        return redirect("/list");
+
     }
 
     /**
@@ -58,7 +69,7 @@ class ListController extends Controller
      */
     public function show($id)
     {
-        $data=TodoList::find($id);
+        $data=TodoList::findOrFail($id);
         //
         return view("lists.show",compact('data',$data));
     }
@@ -71,7 +82,11 @@ class ListController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $list = TodoList::find($id);
+
+       return  view("lists.edit",compact("list",$list));
+
     }
 
     /**
@@ -83,7 +98,14 @@ class ListController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $list = Todolist::find($id);
+         $list->update([
+        'name' => $request->get('name'),
+        'description' => $request->get('description')
+        ]);
+        return \Redirect::route('list.edit',
+        array($list->id))->with('message', 'Your list has been updated!');
+
     }
 
     /**
