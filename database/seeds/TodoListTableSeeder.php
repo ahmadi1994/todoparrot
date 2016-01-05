@@ -27,7 +27,7 @@ class TodoListTableSeeder extends Seeder
 //        ]);
         $faker = \Faker\Factory::create();
         TodoList::truncate();
-         foreach(range(1,50) as $index)
+         foreach(range(1,5000) as $index)
          {
              Todolist::create([
              'name' => $faker->sentence(2),

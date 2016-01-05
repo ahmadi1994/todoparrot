@@ -11,6 +11,13 @@
                     <h5>Created on: {{$data->created_at}}</h5>
                     <h5>Updated on: {{$data->updated_at}}</h5>
                     <h5></h5>{{$data->description}}<br>
+                    <a href=""></a>
+                    <a href="{{URL::route('list.edit', $data->id)}}">Edit</a>
+                    {!! Form::open(array('route' => array('list.destroy', $data->id), 'method' => 'delete')) !!}
+                    <button type="submit" class="btn btn-success" href="{{ URL::route('list.destroy', $data->id) }}" title="Delete list">
+                        Delete
+                    </button>
+                    {!! Form::close() !!}
                 </div>
             </div>
 

@@ -80,12 +80,14 @@ class ListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
 
+    public function edit(Request $request,$id)
+    {
+        $message='g';
         $list = TodoList::find($id);
 
-       return  view("lists.edit",compact("list",$list));
+
+       return  view("lists.edit",compact("list",$list,"message",$message));
 
     }
 
@@ -103,8 +105,9 @@ class ListController extends Controller
         'name' => $request->get('name'),
         'description' => $request->get('description')
         ]);
-        return \Redirect::route('list.edit',
-        array($list->id))->with('message', 'Your list has been updated!');
+        $message='Your list has been updated';
+        return \Redirect::Route('list.edit',
+        array($list->id))->with('message',$message);
 
     }
 
@@ -117,5 +120,7 @@ class ListController extends Controller
     public function destroy($id)
     {
         //
+        TodoList::destroy($id);
+        return \Redirect::route('list.index') ->with('message', 'The list has been deleted!');
     }
 }
