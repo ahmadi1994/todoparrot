@@ -8,18 +8,8 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    {{$name}}
                     You are logged in!
-                     @if(count($info)>1)
-                    @foreach($info as $in)
-                        {{$in}}<br>
-                        @endforeach
-                         @else
-                         you no have in fo
-
-                         @endif
                 </div>
-                {!! HTML::image("img/sib_1.png") !!}
             </div>
         </div>
     </div>

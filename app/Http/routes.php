@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -26,15 +27,20 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
-
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
     Route::get('/about', 'AboutController@index');
     Route::resource('/list', 'listController');
+    Route::get('contact',['as'=>'contact','uses'=>'AboutController@create']);
+    Route::post('contact',['as'=>'contact_post','uses'=>'AboutController@store']);
+
+    Route::resource('list.tasks', 'TasksController');
+
+    Route::post('list/{lists}/tasks/{tasks}/complete',
+        array('as' => 'complete_task', 'uses' => 'TasksController@complete'));
+
 });
+
 

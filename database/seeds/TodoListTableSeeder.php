@@ -26,12 +26,12 @@ class TodoListTableSeeder extends Seeder
 //            'description' => 'Cleanup and improvements for new tenants'
 //        ]);
         $faker = \Faker\Factory::create();
-        TodoList::truncate();
-         foreach(range(1,5000) as $index)
+//        TodoList::truncate();
+         foreach(range(0,500) as $index)
          {
              Todolist::create([
              'name' => $faker->sentence(2),
-             'description' => $faker->sentence(4)
+             'description'=> $faker->sentence(4)
              ]);
 
             }

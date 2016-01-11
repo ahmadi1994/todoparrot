@@ -10,13 +10,7 @@
                 <div class="panel-body">
                     Your Application's Landing Page.
                 </div>
-                {!! HTML::image("img/sib_1.png") !!}
-                {!! Button::success('Success') !!}
-             </div>
-            {!!Form::Open()  !!}
-             {!! Form::text("name") !!}
-            {!!Form::close()  !!}
-
+            </div>
         </div>
     </div>
 </div>

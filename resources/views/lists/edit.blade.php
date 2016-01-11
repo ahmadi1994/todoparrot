@@ -6,9 +6,23 @@
                 <div class="panel-heading">Update</div>
                 <div class="panel-body">
                     Your Application's Landing Page.
-                        @if(empty($message))
-                        <br>eeeeeeeeeeeeeeeeeeee
-                        @endif
+                    @if(Session('message'))
+                        <div class="alert alert-success">
+                            {{Session('message')}}
+                        </div>
+                    @endif
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            There were some problems with your input.<br />
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+
                         {!! Form::model($list, array('method' => 'put', 'route' => ['list.update', $list->id], 'class' => 'form')) !!}
                          <div class="form-group">
                             {!! Form::label('List Name') !!}

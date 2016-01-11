@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
-     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/boots\ 2 trap.min.css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
@@ -21,9 +18,6 @@
     <style>
         body {
             font-family: 'Lato';
-        }
-        img{
-            width:100%;
         }
 
         .fa-btn {
@@ -60,7 +54,7 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                @if (Auth::guest())
+                    @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
@@ -79,11 +73,7 @@
         </div>
     </nav>
 
-
-
-
     @yield('content')
-
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

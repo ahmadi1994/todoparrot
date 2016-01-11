@@ -24,8 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $info= array("aziz","ahmad","ahmadi");
-        $name ="aziz ahmad ahmadi";
-        return view('home',compact("info",$info,"name",$name));
+        return view('home');
     }
 }

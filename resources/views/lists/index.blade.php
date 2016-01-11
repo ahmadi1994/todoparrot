@@ -4,9 +4,25 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">index</div>
+
                 <div class="panel-body">
-                    Your Application's Landing Page.
-                </div>
+                    @if(Session('message'))
+                        <div class="alert alert-success">
+                            {{Session('message')}}
+                        </div>
+                    @endif
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            There were some problems with your input.
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+
                 <div class="panel-body">
                     @foreach($lists as $lis)
                         year : {{$lis->year}} conut :{{$lis->count}}<br>
@@ -16,13 +32,9 @@
 
                             <a href="\list\{{$li->id}}"> <h1> {{$li->id}} {{$li->name}}</h1></a>
                     @endforeach
-                    {!! $list->render() !!}
+                    {!! $list->render() !!}<br>
+                       <a href="list\create"> {!! Button::success('Create List') !!}</a>
                 </div>
-                {!!Form::Open()  !!}
-                {!! Form::text("name") !!}
-                {!!Form::close()  !!}
-                {{--{!! HTML::image("img/sib_1.png") !!}--}}
-                {!! Button::success('Success') !!}
             </div>
 
         </div>

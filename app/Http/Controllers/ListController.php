@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\TodoList;
 use Illuminate\Http\Request;
 
@@ -43,8 +44,12 @@ class ListController extends Controller
      */
     public function create()
     {
-        //
-        return view("lists.create");
+//        $categories = Category::lists('name', 'id');
+        $categories = \DB::table('categorys')->lists('name', 'id');
+
+        return view('lists.create',compact('categories',$categories));
+
+//        return view("lists.create");
     }
 
     /**
@@ -57,7 +62,7 @@ class ListController extends Controller
     {
         $list=TodoList::create($request->toArray());
         $list->save();
-        return redirect("/list");
+        return redirect("/list")->with('message',"Your list has been created!");
 
     }
 
@@ -69,9 +74,9 @@ class ListController extends Controller
      */
     public function show($id)
     {
-        $data=TodoList::findOrFail($id);
+        $list=TodoList::findOrFail($id);
         //
-        return view("lists.show",compact('data',$data));
+        return view("lists.show",compact('list',$list));
     }
 
     /**
@@ -81,13 +86,13 @@ class ListController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit(Request $request,$id)
+    public function edit($id)
     {
-        $message='g';
+
         $list = TodoList::find($id);
 
 
-       return  view("lists.edit",compact("list",$list,"message",$message));
+       return  view("lists.edit",compact("list",$list));
 
     }
 
@@ -105,9 +110,8 @@ class ListController extends Controller
         'name' => $request->get('name'),
         'description' => $request->get('description')
         ]);
-        $message='Your list has been updated';
-        return \Redirect::Route('list.edit',
-        array($list->id))->with('message',$message);
+        return redirect()->route('list.show',
+       $list->id)->with('message','Your list has been updated');
 
     }
 
@@ -121,6 +125,6 @@ class ListController extends Controller
     {
         //
         TodoList::destroy($id);
-        return \Redirect::route('list.index') ->with('message', 'The list has been deleted!');
+        return redirect()->route('list.index')->with('message','The list has been deleted!');
     }
 }
