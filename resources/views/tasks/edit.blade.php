@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="col-md-6">
-{!! Form::model($task, array('method' => 'put',
-    'route' => array('list.tasks.update', $task->todolist_id, $task->id), 'class' => 'form')) !!}
+    <div class="panel-heading">Edit a Task (<a href="{{ URL::route('list.show', $task->todo_list_id) }}">{{ $task->todolist->name }}</a>)</div>
 
-        {{--<h2>Edit a Task (<a href="{{ URL::route('list.show', $task->todolist->id) }}">{{ $task->todolist->name }}</a>)</h2>--}}
+    <div class="panel-body">
+        {!! Form::model($task, array('method' => 'put',
+         'route' => array('list.tasks.update', $task->todo_list_id,$task->id), 'class' => 'form')) !!}
+
+
 
         @if (count($errors) > 0)
             <div class="alert alert-danger">
@@ -24,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            {!! Form::label('Due Date') !!}
+            {!! Form::label('Description') !!}
             {!! Form::input('name', 'description', null, array('class'=>'form-control', 'placeholder' => date('Y-m-d'))) !!}
         </div>
 
@@ -36,5 +38,7 @@
             {!! Form::submit('Update Task!', array('class'=>'btn btn-primary')) !!}
         </div>
         {!! Form::close() !!}
-</div>
+    </div>
+
+
 @stop

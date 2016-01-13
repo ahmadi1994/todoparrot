@@ -1,17 +1,20 @@
 @extends("layouts.app")
 @section("content")
-<h1>Contact TODOparrot</h1>
-    @if(Session::has("message"))
-        {{Session::get('message')}}
-    @endif
+    <div class="panel-heading">Contact TODOparrot</div>
 
-    <ul>
-        @foreach($errors as $error)
-          <li>{{$error}}</li>
-        @endforeach
+    <div class="panel-body">
+        You are logged in!
+        @if(Session::has("message"))
+            {{Session::get('message')}}
+        @endif
 
-    </ul>
-    {!! Form::open(array('route'=>'contact_post','class'=>'form')) !!}
+        <ul>
+            @foreach($errors as $error)
+                <li>{{$error}}</li>
+            @endforeach
+
+        </ul>
+        {!! Form::open(array('route'=>'contact_post','class'=>'form')) !!}
         <div class="form-group">
             {!!Form::label("Your Name") !!}
             {!!Form::text("name",null,array('required','placeholder'=>"Your Name","class"=>"form-control")) !!}
@@ -32,6 +35,9 @@
         </div>
 
 
-    {!! Form::close() !!}
+        {!! Form::close() !!}
+
+    </div>
+
 
 @endsection

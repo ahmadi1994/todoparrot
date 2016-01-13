@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section("content")
     <div class="col-md-6">
-        {!! Form::open(array('route' => 'list.store', 'class' => 'form', 'novalidate' => 'novalidate')) !!}
+        {!! Form::open(array('route' => 'list.store', 'class' => 'form')) !!}
 
         <h2>Create a TODO List</h2>
 
@@ -28,7 +28,7 @@
 
         <div class="form-group">
             {!! Form::label('Your List Description') !!}
-            {!! Form::textarea('description', null, array('class'=>'form-control', 'placeholder'=>'Enter a short description')) !!}
+            {!! Form::textarea('description', null, array('required','class'=>'form-control', 'placeholder'=>'Enter a short description')) !!}
         </div>
 
         <div class="form-group">

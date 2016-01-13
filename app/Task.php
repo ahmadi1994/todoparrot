@@ -9,7 +9,7 @@ class Task extends Model
     protected $table = 'tasks';
     protected $fillable = ['id','name','description','todo_list_id','chick'];
     //
-public function todolist(){
+public function TodoList(){
 
     return $this->belongsTo('App\TodoList');
 }

@@ -117,9 +117,8 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($taskId,Request $request)
+    public function update($listId,$taskId,Request $request)
     {
-//        $list = TodoList::findOrFail($listId);
         $task = Task::find($taskId);
 
 
@@ -153,7 +152,7 @@ class TasksController extends Controller
 
             $task->delete();
 
-            return \Redirect::route('list.show',1)
+            return \Redirect::route('list.show',$listId)
                 ->with('message', 'Task deleted!');
 
     }
@@ -171,7 +170,7 @@ class TasksController extends Controller
 
         $task->save();
 
-        return \Redirect::route('list.show',1)
+        return \Redirect::route('list.show',$listId)
             ->with('message', 'Task updated!');
 
     }

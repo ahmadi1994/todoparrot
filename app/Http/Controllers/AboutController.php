@@ -32,21 +32,24 @@ class AboutController extends Controller
         return view("AboutPage.contact");
 
     }
-    public function store(Request $request){
+    public function store( Request $request){
         $r=$request->input('name');
-        Mail::send('emails.contact',['name'=>$request->input('name'),
-            'email'=>$request->input('email'),
-            'user_message'=>$request->input('message')],function($me){
-                $me->from("az.ahmadi1994@gmail.com");
+        Mail::send('emails.contact',['name'=>$request->input('name')
+        ],function($me){
+                $me->from("az.ahmadi1994@gmail.com","aa");
                 $me->to("az.ahmadi1994@gmail.com",'admin')->subject("test");
             }
+//        Mail::send('emails.contact',['name'=>$request->input('name'),
+//            'email'=>$request->input('email'),
+//            'user_message'=>$request->input('message')],function($me){
+//                $me->from("az.ahmadi1994@gmail.com","aa");
+//                $me->to("az.ahmadi1994@gmail.com",'admin')->subject("test");
+//            }
 
 
         );
 
 
-
-
-    return redirect('contact')->with('message', 'Thanks for contacting us!'.$r);
+        return redirect('contact')->with('message', 'Thanks for contacting us!'.$r);
     }
 }

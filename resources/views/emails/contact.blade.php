@@ -1,8 +1,5 @@
 <p>
-    A visitor named {{ $name }} ({{ $email }})
+    A visitor named {{ $name }}
     has submitted an inquiry through TODOParrot.com:
 </p>
 
-<p>
-    {{ $user_message }}
-</p>

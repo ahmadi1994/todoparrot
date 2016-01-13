@@ -49,6 +49,8 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="{{ url('/list') }}">List</a></li>
+                    <li><a href="{{ url('/about') }}">About Us</a></li>
+                    <li><a href="{{ url('/contact') }}">Contact Us</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -72,8 +74,17 @@
             </div>
         </div>
     </nav>
+    <div class="container spark-screen">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    @yield('content')
+                </div>
+            </div>
+        </div>
+    </div>
 
-    @yield('content')
+
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

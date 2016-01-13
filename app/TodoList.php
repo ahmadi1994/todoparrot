@@ -22,7 +22,7 @@ class TodoList extends Model
         $this->errors= $v->messages();
         return false;
     }
-    public function tasks(){
+    public function Tasks(){
 
         return $this->hasMany('App\Task');
     }
